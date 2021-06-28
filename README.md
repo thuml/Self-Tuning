@@ -35,6 +35,16 @@ Comprehensive experiments demonstrate that Self-Tuning outperforms its SSL and T
 | FGVC Aircraft | http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/ |
 | Cifar100 | https://www.cs.toronto.edu/~kriz/cifar.html |
 
+- You can either download datasets via the above links or directly run the commands shown below to automatically download datasets as well as data lists from Tsinghua Cloud.
+
+## Disclaimer on Datasets
+
+This open-sourced code will download and prepare public datasets. We do not host or distribute these datasets, vouch for their quality or fairness, or claim that you have licenses to use the dataset. It is your responsibility to determine whether you have permission to use the dataset under the dataset's license.
+
+If you're a dataset owner and wish to update any part of it (description, citation, etc.), or do not want your dataset to be included in this code, please get in touch through a GitHub issue. Thanks for your contribution to the ML community!
+
+
+
 ## Quick Start
 - The running commands for several datasets are shown below. Please refer to ``run.sh`` for commands for datasets with other label ratios.
 ```
