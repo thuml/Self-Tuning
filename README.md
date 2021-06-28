@@ -7,12 +7,12 @@ _38th International Conference on Machine Learning (ICML 2021)_ <br>
 [[Project Page](http://github.com/thuml/Self-Tuning)] [[Paper](https://arxiv.org/abs/2102.12903)] [[Video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b)] [Blog]
 
 <p align="center">
-    <img src="Self-Tuning.png" width="500"> <br>
+    <img src="Self-Tuning.png" width="800"> <br>
 <b>Data-Efficient Deep Learning (DEDL)</b> aims to mitigate the requirement of labeled data by unifying the exploration of labeled and unlabeled data and the transfer of a pre-trained model.
 </p>
 
 
-## Beyond Transfer Learning and Semi-supervised Learning: Brief Introduction for DEDL
+## Brief Introduction for DEDL
 Mitigating the requirement for labeled data is a vital issue in deep learning community. However, _common practices_ of TL and SSL only focus on either the pre-trained model or unlabeled data. This paper unleashes the power of both worlds by proposing _a new setup_ named data-efficient deep learning, aims to mitigate the requirement of labeled data by unifying the exploration of labeled and unlabeled data and the transfer of pre-trained model. 
 
 To address the challenge of confirmation bias in self-training, a general _Pseudo Group Contrast_ mechanism is devised to mitigate the reliance on pseudo-labels and boost the tolerance to false labels. To tackle the model shift problem, we unify the exploration of labeled and unlabeled data and the transfer of a pre-trained model, with a shared key queue beyond just 'parallel training'. 
@@ -33,6 +33,7 @@ Comprehensive experiments demonstrate that Self-Tuning outperforms its SSL and T
 | CUB-200-2011 | http://www.vision.caltech.edu/visipedia/CUB-200-2011.html |
 | Stanford Cars | http://ai.stanford.edu/~jkrause/cars/car_dataset.html |
 | FGVC Aircraft | http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/ |
+| Cifar100 | https://www.cs.toronto.edu/~kriz/cifar.html |
 
 ## Quick Start
 - The running commands for several datasets are shown below. Please refer to ``run.sh`` for commands for datasets with other label ratios.
