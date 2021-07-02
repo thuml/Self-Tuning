@@ -3,7 +3,8 @@ import numpy as np
 from PIL import Image
 from torchvision import datasets
 from torchvision import transforms
-from data.tranforms import TwoCropsTransformCifar
+from data.tranforms import TransformTrainCifar
+from data.tranforms import TransformTest
 from data.tranforms import ResizeImage
 
 crop_size = 224
@@ -12,11 +13,13 @@ cifar100_std = (0.2675, 0.2565, 0.2761)
 
 
 def get_cifar100(args, root):
-    transform_val = transforms.Compose([
-        ResizeImage(size=crop_size),
+    transform_test = transforms.Compose([
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomCrop(size=32,
+                              padding=int(32*0.125),
+                              padding_mode='reflect'),
         transforms.ToTensor(),
         transforms.Normalize(mean=cifar100_mean, std=cifar100_std)])
-
     base_dataset = datasets.CIFAR100(root, train=True, download=True)
     train_labeled_idxs, train_unlabeled_idxs = x_u_split(
         args, base_dataset.targets)
@@ -25,14 +28,17 @@ def get_cifar100(args, root):
 
     train_labeled_dataset = CIFAR100SSL(
         root, train_labeled_idxs, train=True,
-        transform=TwoCropsTransformCifar(mean=cifar100_mean, std=cifar100_std))
+        transform=TransformTrainCifar(mean=cifar100_mean, std=cifar100_std))
 
     train_unlabeled_dataset = CIFAR100SSL(
         root, train_unlabeled_idxs, train=True,
-        transform=TwoCropsTransformCifar(mean=cifar100_mean, std=cifar100_std))
+        transform=TransformTrainCifar(mean=cifar100_mean, std=cifar100_std))
 
-    test_dataset = datasets.CIFAR100(
-        root, train=False, transform=transform_val, download=False)
+    test_dataset = {
+        'test' + str(i):
+            datasets.CIFAR100(root, train=False, transform=transform_test, download=False)
+        for i in range(10)
+    }
 
     return train_labeled_dataset, train_unlabeled_dataset, test_dataset
 

@@ -18,32 +18,36 @@ from tensorboardX import SummaryWriter
 
 from src.utils import load_network, load_data
 
-
 def test(loader, model, classifier, device):
     with torch.no_grad():
+        model.eval()
+        classifier.eval()
         start_test = True
-        iter_val = iter(loader['test'])
-        for i in range(len(loader['test'])):
-            data = iter_val.next()
-            inputs = data[0]
-            label = data[1]
-            inputs = inputs.to(device)
-            label = label.to(device)
-            output = model.inference(inputs)
-            outputs = classifier(output)
-
+        val_len = len(loader['test0'])
+        iter_val = [iter(loader['test' + str(i)]) for i in range(10)]
+        for _ in range(val_len):
+            data = [iter_val[j].next() for j in range(10)]
+            inputs = [data[j][0] for j in range(10)]
+            labels = data[0][1]
+            for j in range(10):
+                inputs[j] = inputs[j].to(device)
+            labels = labels.to(device)
+            outputs = []
+            for j in range(10):
+                output = model.inference(inputs[j])
+                output = classifier(output)
+                outputs.append(output)
+            outputs = sum(outputs)
             if start_test:
-                all_output = outputs.data.float()
-                all_label = label.data.float()
+                all_outputs = outputs.data.float()
+                all_labels = labels.data.float()
                 start_test = False
             else:
-                all_output = torch.cat((all_output, outputs.data.float()), 0)
-                all_label = torch.cat((all_label, label.data.float()), 0)
-
-        _, predict = torch.max(all_output, 1)
-        accuracy = torch.sum(torch.squeeze(predict).float() == all_label).item() / float(all_label.size()[0])
+                all_outputs = torch.cat((all_outputs, outputs.data.float()), 0)
+                all_labels = torch.cat((all_labels, labels.data.float()), 0)
+        _, predict = torch.max(all_outputs, 1)
+        accuracy = torch.sum(torch.squeeze(predict).float() == all_labels).item() / float(all_labels.size()[0])
     return accuracy
-
 
 def train(args, model, classifier, dataset_loaders, optimizer, scheduler, device=None, writer=None, model_path = None):
 
@@ -134,7 +138,7 @@ def read_config():
     parser.add_argument('--label_ratio', type=int, default=15)
     parser.add_argument('--logdir', type=str, default='../vis/')
     parser.add_argument('--lr', type=float, default='0.001')
-    parser.add_argument('--seed', type=int, default='19260817')
+    parser.add_argument('--seed', type=int, default='666666')
     parser.add_argument('--workers', type=int, default='4')
     parser.add_argument('--lr_ratio', type=float, default='10')
     parser.add_argument('--backbone', type=str, default='resnet50')
