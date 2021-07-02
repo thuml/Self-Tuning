@@ -3,8 +3,7 @@ import numpy as np
 from PIL import Image
 from torchvision import datasets
 from torchvision import transforms
-from data.tranforms import TransformTrainCifar
-from data.tranforms import TransformTest
+from data.tranforms import TransformTrainCifar, RandAugmentMC
 from data.tranforms import ResizeImage
 
 crop_size = 224
@@ -18,6 +17,8 @@ def get_cifar100(args, root):
         transforms.RandomCrop(size=32,
                               padding=int(32*0.125),
                               padding_mode='reflect'),
+        RandAugmentMC(n=2, m=10),
+        ResizeImage(size=crop_size),
         transforms.ToTensor(),
         transforms.Normalize(mean=cifar100_mean, std=cifar100_std)])
     base_dataset = datasets.CIFAR100(root, train=True, download=True)
