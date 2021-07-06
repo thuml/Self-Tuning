@@ -7,8 +7,7 @@ _38th International Conference on Machine Learning (ICML 2021)_ <br>
 [[Project Page](http://github.com/thuml/Self-Tuning)] [[Paper](https://arxiv.org/abs/2102.12903)] [[Video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b)]
 
 <p align="center">
-    <img src="Self-Tuning.png" width="800"> <br>
-<b>Data-Efficient Deep Learning </b> aims to mitigate the requirement of labeled data by unifying the exploration of labeled and unlabeled data and the transfer of a pre-trained model.
+    <img src="Self-Tuning.png" width="900"> <br>
 </p>
 
 
@@ -41,7 +40,7 @@ Comprehensive experiments demonstrate that Self-Tuning outperforms its SSL and T
 
 This open-sourced code will download and prepare public datasets. We do not host or distribute these datasets, vouch for their quality or fairness, or claim that you have licenses to use the dataset. It is your responsibility to determine whether you have permission to use the dataset under the dataset's license.
 
-If you're a dataset owner and wish to update any part of it (description, citation, etc.), or do not want your dataset to be included in this code, please get in touch through a GitHub issue. Thanks for your contribution to the ML community!
+If you're a dataset owner and wish to update any part of it (description, citation, etc.), or do not want your dataset to be included in this code, please get in touch with us through a GitHub issue. Thanks for your contribution to the ML community!
 
 
 
@@ -56,18 +55,12 @@ python src/main.py  --root ./cifar100 --batch_size 20 --logdir vis/ --gpu_id 3 -
 ```
 ## Tensorboard Log
 - We achieved better results than that reported in the paper, after fixing some small bugs of the code.
-<center class="half">
-    <img src="vis/Aircraft_15%.png" width="200"/><img src="vis/Aircraft_30%.png" width="200"/><img src="vis/Aircraft_50%.png" width="200"/>
-</center>
-<center class="half">
-    <img src="vis/CUB200_15%.png" width="200"/><img src="vis/CUB200_30%.png" width="200"/><img src="vis/CUB200_50%.png" width="200"/>
-</center>
-<center class="half">
-    <img src="vis/StanfordCars_15%.png" width="200"/><img src="vis/StanfordCars_30%.png" width="200"/><img src="vis/StanfordCars_50%.png" width="200"/>
-</center>
-<center class="half">
-    <img src="vis/Cifar100_400.png" width="200"/><img src="vis/Cifar100_2500.png" width="200"/><img src="vis/Cifar100_10000.png" width="200"/>
-</center>
+
+| CUB-200-2011 | [15%](http://github.com/thuml/Self-Tuning/vis/CUB200_15.png) | [30%](http://github.com/thuml/Self-Tuning/vis/CUB200_30.png) | [50%](http://github.com/thuml/Self-Tuning/vis/CUB200_50.png) |
+| Stanford Cars  | [15%](http://github.com/thuml/Self-Tuning/vis/StanfordCars_15.png) | [30%](http://github.com/thuml/Self-Tuning/vis/StanfordCars_30.png) | [50%](http://github.com/thuml/Self-Tuning/vis/StanfordCars_50.png) |
+| FGVC Aircraft  | [15%](http://github.com/thuml/Self-Tuning/vis/Aircraft_15.png) | [30%](http://github.com/thuml/Self-Tuning/vis/Aircraft_30.png) | [50%](http://github.com/thuml/Self-Tuning/vis/Aircraft_50.png) |
+| Cifar100  | [400](http://github.com/thuml/Self-Tuning/vis/Cifar100_400.png) | [2500](http://github.com/thuml/Self-Tuning/vis/Cifar100_2500.png) | [10000](http://github.com/thuml/Self-Tuning/vis/Cifar100_10000.png) |
+
 
 
 
