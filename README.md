@@ -56,10 +56,10 @@ python src/main.py  --root ./cifar100 --batch_size 20 --logdir vis/ --gpu_id 3 -
 ## Tensorboard Log
 | Dataset | Label Ratio 1 | Label Ratio 2 | Label Ratio 3 |
 | -- | -- | -- | -- |
-| CUB-200-2011 | [15%](http://github.com/thuml/Self-Tuning/vis/CUB200_15.png) | [30%](http://github.com/thuml/Self-Tuning/vis/CUB200_30.png) | [50%](http://github.com/thuml/Self-Tuning/vis/CUB200_50.png) |
-| Stanford Cars  | [15%](http://github.com/thuml/Self-Tuning/vis/StanfordCars_15.png) | [30%](http://github.com/thuml/Self-Tuning/vis/StanfordCars_30.png) | [50%](http://github.com/thuml/Self-Tuning/vis/StanfordCars_50.png) |
-| FGVC Aircraft  | [15%](http://github.com/thuml/Self-Tuning/vis/Aircraft_15.png) | [30%](http://github.com/thuml/Self-Tuning/vis/Aircraft_30.png) | [50%](http://github.com/thuml/Self-Tuning/vis/Aircraft_50.png) |
-| Cifar100  | [400](http://github.com/thuml/Self-Tuning/vis/Cifar100_400.png) | [2500](http://github.com/thuml/Self-Tuning/vis/Cifar100_2500.png) | [10000](http://github.com/thuml/Self-Tuning/vis/Cifar100_10000.png) |
+| CUB-200-2011 | [15%](http://github.com/thuml/Self-Tuning/blob/master/vis/CUB200_15.png) | [30%](http://github.com/thuml/Self-Tuning/blob/master/vis/CUB200_30.png) | [50%](http://github.com/thuml/Self-Tuning/blob/master/vis/CUB200_50.png) |
+| Stanford Cars  | [15%](http://github.com/thuml/Self-Tuning/blob/master/vis/StanfordCars_15.png) | [30%](http://github.com/thuml/Self-Tuning/blob/master/vis/StanfordCars_30.png) | [50%](http://github.com/thuml/Self-Tuning/blob/master/vis/StanfordCars_50.png) |
+| FGVC Aircraft  | [15%](http://github.com/thuml/Self-Tuning/blob/master/vis/Aircraft_15.png) | [30%](http://github.com/thuml/Self-Tuning/blob/master/vis/Aircraft_30.png) | [50%](http://github.com/thuml/Self-Tuning/blob/master/vis/Aircraft_50.png) |
+| Cifar100  | [400](http://github.com/thuml/Self-Tuning/blob/master/vis/Cifar100_400.png) | [2500](http://github.com/thuml/Self-Tuning/blob/master/vis/Cifar100_2500.png) | [10000](http://github.com/thuml/Self-Tuning/blob/master/vis/Cifar100_10000.png) |
 
 - We achieved better results than that reported in the paper, after fixing some small bugs of the code.
 
