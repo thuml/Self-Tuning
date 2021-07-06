@@ -8,11 +8,11 @@ _38th International Conference on Machine Learning (ICML 2021)_ <br>
 
 <p align="center">
     <img src="Self-Tuning.png" width="800"> <br>
-<b>Data-Efficient Deep Learning (DEDL)</b> aims to mitigate the requirement of labeled data by unifying the exploration of labeled and unlabeled data and the transfer of a pre-trained model.
+<b>Data-Efficient Deep Learning </b> aims to mitigate the requirement of labeled data by unifying the exploration of labeled and unlabeled data and the transfer of a pre-trained model.
 </p>
 
 
-## Brief Introduction for DEDL
+## Brief Introduction for Data-Efficient Deep Learning
 Mitigating the requirement for labeled data is a vital issue in deep learning community. However, _common practices_ of TL and SSL only focus on either the pre-trained model or unlabeled data. This paper unleashes the power of both worlds by proposing _a new setup_ named data-efficient deep learning, aims to mitigate the requirement of labeled data by unifying the exploration of labeled and unlabeled data and the transfer of pre-trained model. 
 
 To address the challenge of confirmation bias in self-training, a general _Pseudo Group Contrast_ mechanism is devised to mitigate the reliance on pseudo-labels and boost the tolerance to false labels. To tackle the model shift problem, we unify the exploration of labeled and unlabeled data and the transfer of a pre-trained model, with a shared key queue beyond just 'parallel training'. 
