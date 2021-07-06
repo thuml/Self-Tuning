@@ -4,7 +4,7 @@ This repository contains the implementation code for paper: <br>
 __Self-Tuning for Data-Efficient Deep Learning__ <br>
 [Ximei Wang](https://wxm17.github.io/), [Jinghan Gao](https://github.com/getterk96), [Mingsheng Long](http://ise.thss.tsinghua.edu.cn/~mlong/), [Jianmin Wang](http://ise.thss.tsinghua.edu.cn/~wangjianmin/)<br>
 _38th International Conference on Machine Learning (ICML 2021)_ <br>
-[[Project Page](http://github.com/thuml/Self-Tuning)] [[Paper](https://arxiv.org/abs/2102.12903)] [[Video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b)] [Blog]
+[[Project Page](http://github.com/thuml/Self-Tuning)] [[Paper](https://arxiv.org/abs/2102.12903)] [[Video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b)]
 
 <p align="center">
     <img src="Self-Tuning.png" width="800"> <br>
@@ -51,15 +51,15 @@ If you're a dataset owner and wish to update any part of it (description, citati
 python src/main.py  --root ./StanfordCars --batch_size 24 --logdir vis/ --gpu_id 0 --queue_size 32 --projector_dim 1024 --backbone resnet50  --label_ratio 15 --pretrained
 python src/main.py  --root ./CUB200 --batch_size 24 --logdir vis/ --gpu_id 1 --queue_size 32 --projector_dim 1024 --backbone resnet50 --label_ratio 15 --pretrained
 python src/main.py  --root ./Aircraft --batch_size 24 --logdir vis/ --gpu_id 2 --queue_size 32 --projector_dim 1024 --backbone resnet50 --label_ratio 15 --pretrained
-python src/main.py  --root ./cifar100 --batch_size 24 --logdir vis/ --gpu_id 3 --queue_size 16 --backbone efficientnet-b2 --num_labeled 10000 --expand_label --pretrained --projector_dim 1024
+python src/main.py  --root ./cifar100 --batch_size 20 --logdir vis/ --gpu_id 3 --queue_size 32 --backbone efficientnet-b2 --num_labeled 10000 --expand_label --pretrained --projector_dim 1024
 
 ```
 
 
 
-
 ## Updates
-- [06/2021] A five minute video is released to briefly introduce the main idea of Self-Tuning. We have released the code and models. You can find all reproduced checkpoints via [this link](https://cloud.tsinghua.edu.cn/d/4e8fb444c4634e76ab0a/).
+- [07/2021] We have released the code and models. You can find all reproduced checkpoints via [this link](https://cloud.tsinghua.edu.cn/d/4e8fb444c4634e76ab0a/).
+- [06/2021] A five minute video is released to briefly introduce the main idea of Self-Tuning [video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b). 
 - [05/2021] Paper accepted to ICML 2021 as a __Short Talk__. 
 - [02/2021] [arXiv version](https://arxiv.org/abs/2102.12903) posted. Please stay tuned for updates.
 

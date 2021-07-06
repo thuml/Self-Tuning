@@ -66,8 +66,6 @@ class ForceFlip(object):
         return img.transpose(Image.FLIP_LEFT_RIGHT)
 
 
-
-
 class TransformTrain(object):
     def __init__(self,resize_size=256, crop_size=224, mean=imagenet_mean, std=imagenet_std):
         self.strong = transforms.Compose([
@@ -100,7 +98,7 @@ class TransformTrainCifar(object):
         return [self.normalize(self.strong(x)) for _ in range(2)]
 
 
-## We adopt the same test transformation as a previous method Co-Tuning for fair comparison
+## For fair comparison, we adopt the same test transformation with that of a previous method Co-Tuning
 ## https://github.com/thuml/CoTuning/blob/main/utils/tools.py
 def TransformTest(resize_size=256, crop_size=224, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]):
     normalize = transforms.Normalize(mean=mean, std=std)

@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 from torchvision import datasets
 from torchvision import transforms
-from data.tranforms import TransformTrainCifar, RandAugmentMC
+from data.tranforms import TransformTrainCifar
 from data.tranforms import ResizeImage
 
 crop_size = 224
@@ -12,18 +12,12 @@ cifar100_std = (0.2675, 0.2565, 0.2761)
 
 
 def get_cifar100(args, root):
-    transform_test = transforms.Compose([
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomCrop(size=32,
-                              padding=int(32*0.125),
-                              padding_mode='reflect'),
-        RandAugmentMC(n=2, m=10),
-        ResizeImage(size=crop_size),
+    transform_val = transforms.Compose([
+        ResizeImage(size=224),
         transforms.ToTensor(),
         transforms.Normalize(mean=cifar100_mean, std=cifar100_std)])
     base_dataset = datasets.CIFAR100(root, train=True, download=True)
-    train_labeled_idxs, train_unlabeled_idxs = x_u_split(
-        args, base_dataset.targets)
+    train_labeled_idxs, train_unlabeled_idxs = x_u_split(args, base_dataset.targets)
     print("train_labeled_idxs: ", len(train_labeled_idxs))
     print("train_unlabeled_idxs: ", len(train_unlabeled_idxs))
 
@@ -34,12 +28,7 @@ def get_cifar100(args, root):
     train_unlabeled_dataset = CIFAR100SSL(
         root, train_unlabeled_idxs, train=True,
         transform=TransformTrainCifar(mean=cifar100_mean, std=cifar100_std))
-
-    test_dataset = {
-        'test' + str(i):
-            datasets.CIFAR100(root, train=False, transform=transform_test, download=False)
-        for i in range(10)
-    }
+    test_dataset = datasets.CIFAR100(root, train=False, transform=transform_val, download=False)
 
     return train_labeled_dataset, train_unlabeled_dataset, test_dataset
 
@@ -89,30 +78,3 @@ class CIFAR100SSL(datasets.CIFAR100):
             target = self.target_transform(target)
 
         return img, target
-
-class ImageFolderInstance(datasets.ImageFolder):
-    """Folder datasets which returns the index of the image as well
-    """
-
-    def __init__(self, root, transform=None, target_transform=None):
-        super(ImageFolderInstance, self).__init__(root, transform, target_transform)
-
-        ##TODO: 改造成data list
-
-    def __getitem__(self, index):
-        """
-        Args:
-            index (int): Index
-        Returns:
-            tuple: (image, target, index) where target is class_index of the target class.
-        """
-        path, target = self.imgs[index]
-        image = self.loader(path)
-        if self.transform is not None:
-            img = self.transform(image)
-        else:
-            img = image
-
-        if self.target_transform is not None:
-            target = self.target_transform(target)
-        return img, target, index

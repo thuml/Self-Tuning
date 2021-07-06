@@ -5,9 +5,8 @@ from data.tranforms import TransformTrain
 from data.tranforms import TransformTest
 import data
 from data.cifar100 import get_cifar100
-from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
+from torch.utils.data import DataLoader, RandomSampler
 import os
-import torch
 
 imagenet_mean=(0.485, 0.456, 0.406)
 imagenet_std=(0.229, 0.224, 0.225)
@@ -31,31 +30,33 @@ def load_data(args):
             num_workers=4,
             drop_last=True)
 
-        dataset_loaders = {"train": labeled_trainloader,
-                        "unlabeled_train": unlabeled_trainloader}
+        ## We didn't apply tencrop test since other SSL baselines neither
+        test_loader = DataLoader(
+            test_dataset,
+            batch_size=batch_size_dict["test"],
+            shuffle=False,
+            num_workers=4)
 
-        dataset_loaders.update({'test' + str(i): DataLoader(test_dataset["test" + str(i)], sampler=SequentialSampler(test_dataset), batch_size=batch_size_dict["test"], shuffle=False, num_workers=4)
-                                for i in range(10)})
+        dataset_loaders = {"train": labeled_trainloader,
+                           "unlabeled_train": unlabeled_trainloader,
+                           "test": test_loader}
+
     else:
         transform_train = TransformTrain()
         transform_test = TransformTest(mean=imagenet_mean, std=imagenet_std)
         dataset = data.__dict__[os.path.basename(args.root)]
 
-        datasets = {"train": dataset(root=args.root, split='train', label_ratio=args.label_ratio,
-                                download=True, transform=transform_train),
-                    "unlabeled_train": dataset(root=args.root, split='unlabeled_train', label_ratio=args.label_ratio, download=True, transform=transform_train),
-                     }
+        datasets = {"train": dataset(root=args.root, split='train', label_ratio=args.label_ratio, download=True, transform=transform_train),
+                    "unlabeled_train": dataset(root=args.root, split='unlabeled_train', label_ratio=args.label_ratio, download=True, transform=transform_train)}
         test_dataset = {
             'test' + str(i): dataset(root=args.root, split='test', label_ratio=100, download=True, transform=transform_test["test" + str(i)]) for i in range(10)
         }
         datasets.update(test_dataset)
 
-        dataset_loaders = {x: torch.utils.data.DataLoader(datasets[x], batch_size=batch_size_dict[x],
-                                                       shuffle=True, num_workers=4)
-                        for x in ['train', 'unlabeled_train']}
-        dataset_loaders.update({'test' + str(i):
-                torch.utils.data.DataLoader(datasets["test" + str(i)],batch_size=4, shuffle=False, num_workers=4)
-            for i in range(10)})
+        dataset_loaders = {x: DataLoader(datasets[x], batch_size=batch_size_dict[x], shuffle=True, num_workers=4)
+                           for x in ['train', 'unlabeled_train']}
+        dataset_loaders.update({'test' + str(i): DataLoader(datasets["test" + str(i)], batch_size=4, shuffle=False, num_workers=4)
+                                for i in range(10)})
 
     return dataset_loaders
 

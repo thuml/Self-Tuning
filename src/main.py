@@ -15,8 +15,34 @@ import torch.optim as optim
 from models.classifier import Classifier
 from models.method import SelfTuning
 from tensorboardX import SummaryWriter
-
 from src.utils import load_network, load_data
+
+
+def test_cifar(loader, model, classifier, device):
+    with torch.no_grad():
+        start_test = True
+        iter_val = iter(loader['test'])
+        for i in range(len(loader['test'])):
+            data = iter_val.next()
+            inputs = data[0]
+            labels = data[1]
+            inputs = inputs.to(device)
+            labels = labels.to(device)
+            feat = model.inference(inputs)
+            outputs = classifier(feat)
+
+            if start_test:
+                all_output = outputs.data.float()
+                all_label = labels.data.float()
+                start_test = False
+            else:
+                all_output = torch.cat((all_output, outputs.data.float()), 0)
+                all_label = torch.cat((all_label, labels.data.float()), 0)
+
+        _, predict = torch.max(all_output, 1)
+        accuracy = torch.sum(torch.squeeze(predict).float() == all_label).item() / float(all_label.size()[0])
+    return accuracy
+
 
 def test(loader, model, classifier, device):
     with torch.no_grad():
@@ -34,8 +60,8 @@ def test(loader, model, classifier, device):
             labels = labels.to(device)
             outputs = []
             for j in range(10):
-                output = model.inference(inputs[j])
-                output = classifier(output)
+                feat = model.inference(inputs[j])
+                output = classifier(feat)
                 outputs.append(output)
             outputs = sum(outputs)
             if start_test:
@@ -118,7 +144,10 @@ def train(args, model, classifier, dataset_loaders, optimizer, scheduler, device
         if iter_num % args.test_interval == 1 or iter_num == 500:
             model.eval()
             classifier.eval()
-            test_acc = test(dataset_loaders, model, classifier, device=device)
+            if 'cifar100' in args.root:
+                test_acc = test_cifar(dataset_loaders, model, classifier, device=device)
+            else:
+                test_acc = test(dataset_loaders, model, classifier, device=device)
             print("iter_num: {}; test_acc: {}".format(iter_num, test_acc))
             writer.add_scalar('acc/test_acc', test_acc, iter_num)
             if test_acc > best_acc:
