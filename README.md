@@ -54,6 +54,20 @@ python src/main.py  --root ./Aircraft --batch_size 24 --logdir vis/ --gpu_id 2 -
 python src/main.py  --root ./cifar100 --batch_size 20 --logdir vis/ --gpu_id 3 --queue_size 32 --backbone efficientnet-b2 --num_labeled 10000 --expand_label --pretrained --projector_dim 1024
 
 ```
+## Tensorboard Log
+- We achieved better results than that reported in the paper, after fixing some small bugs of the code.
+<center class="half">
+    <img src="vis/Aircraft_15%" width="200"/><img src="vis/Aircraft_30%" width="200"/><img src="vis/Aircraft_50%" width="200"/>
+</center>
+<center class="half">
+    <img src="vis/CUB200_15%" width="200"/><img src="vis/CUB200_30%" width="200"/><img src="vis/CUB200_50%" width="200"/>
+</center>
+<center class="half">
+    <img src="vis/StanfordCars_15%" width="200"/><img src="vis/StanfordCars_30%" width="200"/><img src="vis/StanfordCars_50%" width="200"/>
+</center>
+<center class="half">
+    <img src="vis/Cifar100_400" width="200"/><img src="vis/Cifar100_2500" width="200"/><img src="vis/Cifar100_10000" width="200"/>
+</center>
 
 
 
