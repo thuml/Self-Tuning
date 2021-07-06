@@ -57,16 +57,16 @@ python src/main.py  --root ./cifar100 --batch_size 20 --logdir vis/ --gpu_id 3 -
 ## Tensorboard Log
 - We achieved better results than that reported in the paper, after fixing some small bugs of the code.
 <center class="half">
-    <img src="vis/Aircraft_15%" width="200"/><img src="vis/Aircraft_30%" width="200"/><img src="vis/Aircraft_50%" width="200"/>
+    <img src="vis/Aircraft_15%.png" width="200"/><img src="vis/Aircraft_30%.png" width="200"/><img src="vis/Aircraft_50%.png" width="200"/>
 </center>
 <center class="half">
-    <img src="vis/CUB200_15%" width="200"/><img src="vis/CUB200_30%" width="200"/><img src="vis/CUB200_50%" width="200"/>
+    <img src="vis/CUB200_15%.png" width="200"/><img src="vis/CUB200_30%.png" width="200"/><img src="vis/CUB200_50%.png" width="200"/>
 </center>
 <center class="half">
-    <img src="vis/StanfordCars_15%" width="200"/><img src="vis/StanfordCars_30%" width="200"/><img src="vis/StanfordCars_50%" width="200"/>
+    <img src="vis/StanfordCars_15%.png" width="200"/><img src="vis/StanfordCars_30%.png" width="200"/><img src="vis/StanfordCars_50%.png" width="200"/>
 </center>
 <center class="half">
-    <img src="vis/Cifar100_400" width="200"/><img src="vis/Cifar100_2500" width="200"/><img src="vis/Cifar100_10000" width="200"/>
+    <img src="vis/Cifar100_400.png" width="200"/><img src="vis/Cifar100_2500.png" width="200"/><img src="vis/Cifar100_10000.png" width="200"/>
 </center>
 
 
