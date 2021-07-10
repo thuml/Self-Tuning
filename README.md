@@ -4,7 +4,7 @@ This repository contains the implementation code for paper: <br>
 __Self-Tuning for Data-Efficient Deep Learning__ <br>
 [Ximei Wang](https://wxm17.github.io/), [Jinghan Gao](https://github.com/getterk96), [Mingsheng Long](http://ise.thss.tsinghua.edu.cn/~mlong/), [Jianmin Wang](http://ise.thss.tsinghua.edu.cn/~wangjianmin/)<br>
 _38th International Conference on Machine Learning (ICML 2021)_ <br>
-[[Project Page](http://github.com/thuml/Self-Tuning)] [[Paper](https://arxiv.org/abs/2102.12903)] [[Video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b)] [[Slide](https://github.com/thuml/Self-Tuning/blob/master/Self-Tuning-Slide.pdf)]
+[[Project Page](http://github.com/thuml/Self-Tuning)] [[Paper](https://arxiv.org/abs/2102.12903)] [[Video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b)] [[Slide](https://github.com/thuml/Self-Tuning/blob/master/Self-Tuning-Slide.pdf)] [[Slide](https://github.com/thuml/Self-Tuning/blob/master/Self-Tuning-Poster.png)]
 
 <p align="center">
     <img src="Self-Tuning.png" width="900"> <br>
