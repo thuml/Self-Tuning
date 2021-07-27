@@ -67,7 +67,7 @@ python src/main.py  --root ./cifar100 --batch_size 20 --logdir vis/ --gpu_id 3 -
 ## Updates
 - [07/2021] We have created a [Blog post](https://mp.weixin.qq.com/s/H4xlndTZtWuXHni-vOC_vQ) in Chinese for this work. Check it out for more details!
 - [07/2021] We have released the code and models. You can find all reproduced checkpoints via [this link](https://cloud.tsinghua.edu.cn/d/4e8fb444c4634e76ab0a/).
-- [06/2021] A five minute video is released to briefly introduce the main idea of Self-Tuning [video](https://recorder-v3.slideslive.com/?share=40334&s=f7988e61-bece-4a7a-a6ba-3e1a2b49b37b). 
+- [06/2021] A five minute video is released to briefly introduce the main idea of Self-Tuning [video](https://icml.cc/virtual/2021/spotlight/8616). 
 - [05/2021] Paper accepted to ICML 2021 as a __Short Talk__. 
 - [02/2021] [arXiv version](https://arxiv.org/abs/2102.12903) posted. Please stay tuned for updates.
 
